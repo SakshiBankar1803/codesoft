@@ -1,0 +1,35 @@
+#include <iostream>
+#include <random>
+#include <vector>
+#include <algorithm>
+
+int main() 
+{
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::vector<int> numbers;
+
+    // Generate a vector of unique random numbers between 1 and 100
+    for (int i = 1; i <= 100; ++i) 
+      numbers.push_back(i);
+    
+     std::shuffle(numbers.begin(), numbers.end(), gen);
+     for (const auto& num : numbers) 
+     {
+      int guess;
+       while (true)
+       {
+         std::cout << "Guess the number (between 1 and 100): ";
+         std::cin >> guess;
+          if (guess < num)
+           std::cout << "Too low! Try again." << std::endl;
+          else if (guess > num)
+           std::cout << "Too high! Try again." << std::endl;
+          else 
+          {
+           std::cout << "Congratulations! You guessed the correct number." << std::endl;
+           break;
+          }
+        }
+    }
+ }
