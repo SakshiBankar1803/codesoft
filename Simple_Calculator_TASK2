@@ -1,0 +1,37 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+    int a,b,ch,c;
+    cout<<"enter first number::";
+    cin>>a;
+    cout<<"enter second number::";
+    cin>>b;
+
+    do
+    {
+      cout<<"\nmenus\n1=add\n2=substraction\n3=multiplication\n4=division\n";
+      cout<<"enter your choice::";
+      cin>>ch;
+      switch(ch)
+      {
+        case 1 :cout<<"addition="<<a+b;
+                break;
+        case 2 :cout<<"substraction of given number is="<<a-b;
+                break;
+        case 3 :cout<<"multiplication of those two numbers="<<a*b;
+                break;
+        case 4 :if(b==0)
+                {
+                 cout<<"division by zero not allowed\n";
+                 cout<<"denominator must be greate than zero..";
+                }
+               else
+               cout<<"division of numbers are="<<a/b;
+                break;
+        default :cout<<"OOPS invalid choice!!\n";
+                cout<<"enter a valid choice please";
+      }  /* code */
+    } while (ch<5);
+    
+}
