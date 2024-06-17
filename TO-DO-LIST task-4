@@ -1,0 +1,95 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+struct Task 
+{ std::string d;
+  bool completed;
+};
+
+void addTask(std::vector<Task>& tasks)
+{
+ std::cout << "Enter task description: ";
+std::string d;
+std::cin.ignore();
+std::getline(std::cin, d);
+
+  Task newTask;
+  newTask.d= d;
+  newTask.completed = false;
+
+  tasks.push_back(newTask);
+
+ std::cout << "Task added successfully.\n";
+}
+
+void viewTasks(const std::vector<Task>& tasks)
+{
+    if (tasks.empty())
+   {
+    std::cout << "No tasks found.\n";
+       return;
+   }
+
+    std::cout << "Task List:\n";
+    for (size_t i = 0; i < tasks.size(); ++i) 
+    {
+     std::cout << i + 1 << ". " << tasks[i].d;
+      if (tasks[i].completed)
+        std::cout << " [Completed]";
+        std::cout << std::endl;
+    }
+}
+
+void deleteTask(std::vector<Task>& tasks)
+{
+    if (tasks.empty())
+    {
+     std::cout << "No tasks found.\n";
+     return;
+    }
+
+    std::cout << "Enter task number to delete: ";
+    size_t taskNumber;
+    std::cin >> taskNumber;
+
+    if (taskNumber < 1 || taskNumber > tasks.size())
+   {
+     std::cout << "Invalid task number.\n";
+    return;
+    }
+
+    tasks.erase(tasks.begin() + taskNumber - 1);
+
+    std::cout << "Task deleted successfully.\n";
+}
+
+int main()
+{
+ std::vector<Task> t;
+ int ch;
+
+    do
+   {
+    std::cout << "\n****TO DO LIST MANAGER****\n";
+    std::cout << "1=Add Task\n";
+    std::cout << "2=View Tasks\n";
+    std::cout << "3=Delete Task\n";
+    std::cout << "4=Quit\n";
+    std::cout << "Enter your choice: ";
+    std::cin >> ch;
+     switch (ch) 
+    {
+     case 1:addTask(t);
+            break;
+     case 2:viewTasks(t);
+            break;
+     case 3:deleteTask(t);
+            break;
+     case 4:std::cout << "Quit the program.\n";
+            break;
+     default:std::cout << "Invalid choice!!!Please try again.\n";
+             break;
+    }
+    } while (ch<4);
+}
